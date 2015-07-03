@@ -229,15 +229,10 @@ define('ember-qunit/test', ['exports', 'ember', 'ember-test-helpers', 'qunit'], 
 
   'use strict';
 
-  function resetViews() {
-    Ember['default'].View.views = {};
-  }
-
   function test(testName, callback) {
     function wrapper(assert) {
       var context = ember_test_helpers.getContext();
 
-      resetViews();
       var result = callback.call(context, assert);
 
       function failTestOnPromiseRejection(reason) {
@@ -631,7 +626,7 @@ define('ember-test-helpers/test-module', ['exports', 'ember', 'ember-test-helper
     initNeeds: function() {
       this.needs = [this.subjectName];
       if (this.callbacks.needs) {
-        this.needs = this.needs.concat(this.callbacks.needs)
+        this.needs = this.needs.concat(this.callbacks.needs);
         delete this.callbacks.needs;
       }
     },
@@ -787,7 +782,7 @@ define('ember-test-helpers/test-module', ['exports', 'ember', 'ember-test-helper
       this.cache = this.cache || {};
       this.cachedCalls = this.cachedCalls || {};
 
-      var keys = Ember['default'].keys(callbacks);
+      var keys = (Object.keys || Ember['default'].keys)(callbacks);
 
       for (var i = 0, l = keys.length; i < l; i++) {
         (function(key) {
