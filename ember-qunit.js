@@ -795,7 +795,7 @@ define('ember-test-helpers/test-module', ['exports', 'ember', 'ember-test-helper
       this.context = undefined;
       test_context.unsetContext();
 
-      if (context.dispatcher) {
+      if (context.dispatcher && !context.dispatcher.isDestroyed) {
         Ember['default'].run(function() {
           context.dispatcher.destroy();
         });
